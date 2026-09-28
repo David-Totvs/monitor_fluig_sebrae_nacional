@@ -1,0 +1,69 @@
+{
+  "config": {
+    "fluigUrl": "https://processos.sebrae.com.br",
+    "timeoutSeconds": 30,
+    "expectedStatusCodes": [
+      200,
+      301,
+      302
+    ],
+    "telegramBotToken": "8631455218:AAFpdfCCL6NeTlbOMmazqTt029TednmaNyI",
+    "telegramChatId": "-5359036201",
+    "alertIntervalMinutes": 60,
+    "checkIntervalMinutes": 5,
+    "serverName": "Fluig Produção",
+    "adminPassword": "admin123"
+  },
+  "state": {
+    "status": "ONLINE",
+    "lastCheck": "2026-09-28T19:18:16.153Z",
+    "lastResponseTimeMs": 132,
+    "lastStatusCode": 302,
+    "lastError": null,
+    "lastAlertSent": null,
+    "consecutiveFailures": 0,
+    "uptimePercentage": 100
+  },
+  "history": [
+    {
+      "id": "1790623096153",
+      "timestamp": "2026-09-28T19:18:16.153Z",
+      "status": "ONLINE",
+      "statusCode": 302,
+      "responseTimeMs": 132,
+      "error": null
+    },
+    {
+      "id": "1790622749470",
+      "timestamp": "2026-09-28T19:12:29.470Z",
+      "status": "ONLINE",
+      "statusCode": 302,
+      "responseTimeMs": 139,
+      "error": null
+    },
+    {
+      "id": "1790613330721",
+      "timestamp": "2026-09-28T16:35:30.721Z",
+      "status": "ONLINE",
+      "statusCode": 302,
+      "responseTimeMs": 124,
+      "error": null
+    },
+    {
+      "id": "1790612559917",
+      "timestamp": "2026-09-28T16:22:39.917Z",
+      "status": "ONLINE",
+      "statusCode": 302,
+      "responseTimeMs": 132,
+      "error": null
+    },
+    {
+      "id": "1790608902625",
+      "timestamp": "2026-09-28T15:21:42.625Z",
+      "status": "ONLINE",
+      "statusCode": 302,
+      "responseTimeMs": 150,
+      "error": null
+    }
+  ]
+}
