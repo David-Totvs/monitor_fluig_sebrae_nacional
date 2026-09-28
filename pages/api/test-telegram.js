@@ -1,6 +1,6 @@
-const { sendTelegramAlert } = require('../../lib/monitor');
-const { loadData } = require('../../lib/storage');
-const { verifyAuth } = require('./auth');
+import { sendTelegramAlert } from '../../lib/monitor';
+import { loadData } from '../../lib/storage';
+import { verifyAuth } from './auth';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {

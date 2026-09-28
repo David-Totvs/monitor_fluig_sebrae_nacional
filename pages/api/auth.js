@@ -1,8 +1,8 @@
-const { loadData, saveData } = require('../../lib/storage');
-const crypto = require('crypto');
+import { loadData, saveData } from '../../lib/storage';
+import crypto from 'crypto';
 
-// Criação de token simples com base na senha e timestamp
-function generateAuthToken(password) {
+// Criação de token simples com base na senha
+export function generateAuthToken(password) {
   return crypto.createHash('sha256').update(`${password}_monitor_fluig_secret_key`).digest('hex');
 }
 

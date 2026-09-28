@@ -7,8 +7,10 @@
 /.next/
 /out/
 
-# Arquivos de ambiente locais com credenciais
+# Arquivos de ambiente e credenciais
 .env
+.env*
+.env.example
 .env.local
 .env.development.local
 .env.test.local

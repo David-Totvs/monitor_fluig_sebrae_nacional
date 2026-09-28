@@ -1,5 +1,5 @@
-const { loadData, saveData } = require('../../lib/storage');
-const { verifyAuth } = require('./auth');
+import { loadData, saveData } from '../../lib/storage';
+import { verifyAuth } from './auth';
 
 export default function handler(req, res) {
   const data = loadData();

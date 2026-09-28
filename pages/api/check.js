@@ -1,4 +1,4 @@
-const { runHealthCheck } = require('../../lib/monitor');
+import { runHealthCheck } from '../../lib/monitor';
 
 export default async function handler(req, res) {
   try {
