@@ -1,9 +1,9 @@
 import { loadData } from '../../lib/storage';
 import { verifyAuth } from './auth';
 
-export default function handler(req, res) {
-  const data = loadData();
-  const isAuth = verifyAuth(req);
+export default async function handler(req, res) {
+  const data = await loadData();
+  const isAuth = await verifyAuth(req);
 
   const safeConfig = {
     fluigUrl: data.config.fluigUrl,

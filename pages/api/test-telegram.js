@@ -8,7 +8,8 @@ export default async function handler(req, res) {
   }
 
   // Verificar autenticação
-  if (!verifyAuth(req)) {
+  const isAuth = await verifyAuth(req);
+  if (!isAuth) {
     return res.status(401).json({
       success: false,
       error: 'Acesso negado: Você precisa estar autenticado como administrador para realizar testes.'
@@ -16,7 +17,7 @@ export default async function handler(req, res) {
   }
 
   const { telegramBotToken, telegramChatId } = req.body || {};
-  const data = loadData();
+  const data = await loadData();
 
   const token = (telegramBotToken && !telegramBotToken.includes('••••')) ? telegramBotToken : data.config.telegramBotToken;
   const chatId = (telegramChatId && !telegramChatId.includes('••••')) ? telegramChatId : data.config.telegramChatId;

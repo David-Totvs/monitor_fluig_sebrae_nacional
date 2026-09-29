@@ -1,9 +1,9 @@
 import { loadData, saveData } from '../../lib/storage';
 import { verifyAuth } from './auth';
 
-export default function handler(req, res) {
-  const data = loadData();
-  const isAuth = verifyAuth(req);
+export default async function handler(req, res) {
+  const data = await loadData();
+  const isAuth = await verifyAuth(req);
 
   if (req.method === 'GET') {
     // Se não estiver autenticado, omitir dados sensíveis
@@ -46,12 +46,16 @@ export default function handler(req, res) {
 
     if (fluigUrl) data.config.fluigUrl = fluigUrl.trim();
     if (timeoutSeconds) data.config.timeoutSeconds = Number(timeoutSeconds);
-    if (telegramBotToken !== undefined) data.config.telegramBotToken = telegramBotToken.trim();
-    if (telegramChatId !== undefined) data.config.telegramChatId = telegramChatId.trim();
+    if (telegramBotToken !== undefined && !telegramBotToken.includes('••••')) {
+      data.config.telegramBotToken = telegramBotToken.trim();
+    }
+    if (telegramChatId !== undefined && !telegramChatId.includes('••••')) {
+      data.config.telegramChatId = telegramChatId.trim();
+    }
     if (alertIntervalMinutes) data.config.alertIntervalMinutes = Number(alertIntervalMinutes);
     if (serverName) data.config.serverName = serverName.trim();
 
-    saveData(data);
+    await saveData(data);
 
     return res.status(200).json({
       success: true,

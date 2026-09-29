@@ -6,8 +6,8 @@ export function generateAuthToken(password) {
   return crypto.createHash('sha256').update(`${password}_monitor_fluig_secret_key`).digest('hex');
 }
 
-export function verifyAuth(req) {
-  const data = loadData();
+export async function verifyAuth(req) {
+  const data = await loadData();
   const currentPassword = data.config?.adminPassword || process.env.ADMIN_PASSWORD || 'admin123';
   const expectedToken = generateAuthToken(currentPassword);
 
@@ -17,8 +17,8 @@ export function verifyAuth(req) {
   return token === expectedToken;
 }
 
-export default function handler(req, res) {
-  const data = loadData();
+export default async function handler(req, res) {
+  const data = await loadData();
   const currentPassword = data.config?.adminPassword || process.env.ADMIN_PASSWORD || 'admin123';
   const expectedToken = generateAuthToken(currentPassword);
 
@@ -43,7 +43,7 @@ export default function handler(req, res) {
 
     // Ação: Troca de Senha
     if (action === 'change-password') {
-      const isAuth = verifyAuth(req);
+      const isAuth = await verifyAuth(req);
       if (!isAuth && currentPass !== currentPassword) {
         return res.status(401).json({
           success: false,
@@ -59,7 +59,7 @@ export default function handler(req, res) {
       }
 
       data.config.adminPassword = newPass.trim();
-      saveData(data);
+      await saveData(data);
 
       const newToken = generateAuthToken(data.config.adminPassword);
 
@@ -73,7 +73,7 @@ export default function handler(req, res) {
 
   // Ação: Verificar Status
   if (req.method === 'GET') {
-    const isAuth = verifyAuth(req);
+    const isAuth = await verifyAuth(req);
     return res.status(200).json({
       authenticated: isAuth
     });
